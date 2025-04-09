@@ -2,162 +2,245 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Responsive Pricing Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Responsive Course Comparison</title>
   <style>
-    * {
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-    }
-
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f7fa;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
       padding: 20px;
       text-align: center;
     }
-
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    .toggle-btn {
-      margin-bottom: 30px;
-    }
-
-    .toggle-btn button {
-      padding: 10px 20px;
-      border: none;
-      background: #007BFF;
-      color: white;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .pricing-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      width: 300px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h3 {
+    h1 {
+      font-size: 2em;
       margin-bottom: 10px;
-      font-size: 22px;
-      color: #333;
+    }
+    .subheading {
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      padding: 0 10px;
     }
 
-    .price {
-      font-size: 28px;
-      margin: 20px 0;
+    .table-container {
+      overflow-x: auto;
+      max-width: 100%;
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #f9f9f9;
       font-weight: bold;
-      color: #007BFF;
+    }
+    .stars {
+      color: gold;
     }
 
     .features {
-      list-style: none;
-      margin: 20px 0;
-      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding: 0 10px;
     }
 
-    .features li {
-      margin: 10px 0;
-      color: #555;
+    .feature {
+      flex: 1 1 250px;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .btn {
+    .feature h3 {
+      margin-top: 0;
+    }
+
+    .testimonials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding: 0 10px;
+    }
+
+    .testimonial {
+      flex: 1 1 250px;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .testimonial img {
+      width: 50px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .testimonial p {
       display: inline-block;
-      padding: 10px 20px;
-      background: #28a745;
+      vertical-align: middle;
+      margin: 0;
+      max-width: 180px;
+    }
+
+    .cta-button {
+      padding: 15px 30px;
+      background-color: #007bff;
       color: white;
-      border-radius: 5px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 50px;
+      background: #004aad;
+      padding: 15px;
+      color: white;
+    }
+
+    footer a {
+      color: white;
+      margin: 0 10px;
       text-decoration: none;
-      font-weight: bold;
     }
 
     @media (max-width: 768px) {
-      .pricing-container {
-        flex-direction: column;
-        align-items: center;
+      h1 {
+        font-size: 1.6em;
+      }
+      .subheading {
+        font-size: 1em;
+      }
+      .feature, .testimonial {
+        margin: 10px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .testimonial p {
+        max-width: 100%;
+        display: block;
       }
     }
   </style>
 </head>
 <body>
 
-  <h2>Choose Your Plan</h2>
+  <h1>Compare Top Online Courses to Boost Your Career!</h1>
+  <p class="subheading">Find the best options in programming — Compare prices, ratings, and key features!</p>
 
-  <div class="toggle-btn">
-    <button onclick="togglePricing()">Switch to Yearly Pricing</button>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Course</th>
+        <th>Platform</th>
+        <th>Price</th>
+        <th>Duration</th>
+        <th>Key Features</th>
+        <th>Rating</th>
+      </tr>
+      <tr>
+        <td>Programming Basics</td>
+        <td>Udemy</td>
+        <td>$39</td>
+        <td>6 weeks</td>
+        <td>Interactive quizzes</td>
+        <td class="stars">★★★★★</td>
+      </tr>
+      <tr>
+        <td>Machine Learning</td>
+        <td>Coursera</td>
+        <td>$45/month</td>
+        <td>4 months</td>
+        <td>Certification, Peer reviews</td>
+        <td class="stars">★★★★★</td>
+      </tr>
+      <tr>
+        <td>Python for Data Science</td>
+        <td>LinkedIn Learning</td>
+        <td>$28.99/month</td>
+        <td>1 month</td>
+        <td>Expert instructors</td>
+        <td class="stars">★★★★★</td>
+      </tr>
+      <tr>
+        <td>Computer Science 101</td>
+        <td>Computers Science 111</td>
+        <td>Free</td>
+        <td>Self-paced</td>
+        <td>University-backed</td>
+        <td class="stars">★★★★☆</td>
+      </tr>
+    </table>
   </div>
 
-  <div class="pricing-container" id="pricing">
-
-    <div class="card">
-      <h3>Basic</h3>
-      <div class="price" data-monthly="$9" data-yearly="$90">$9/month</div>
-      <ul class="features">
-        <li>1 Website</li>
-        <li>10 GB Storage</li>
-        <li>Email Support</li>
-      </ul>
-      <a href="#" class="btn">Choose Plan</a>
+  <div class="features">
+    <div class="feature">
+      <h3>⏱ Save Time</h3>
+      <p>Quickly compare the best courses in one place</p>
     </div>
-
-    <div class="card">
-      <h3>Pro</h3>
-      <div class="price" data-monthly="$19" data-yearly="$190">$19/month</div>
-      <ul class="features">
-        <li>5 Websites</li>
-        <li>50 GB Storage</li>
-        <li>Priority Support</li>
-      </ul>
-      <a href="#" class="btn">Choose Plan</a>
+    <div class="feature">
+      <h3>📘 Get Key Info</h3>
+      <p>See pricing, ratings, key features, and course duration side-by-side</p>
     </div>
-
-    <div class="card">
-      <h3>Enterprise</h3>
-      <div class="price" data-monthly="$49" data-yearly="$490">$49/month</div>
-      <ul class="features">
-        <li>Unlimited Websites</li>
-        <li>200 GB Storage</li>
-        <li>24/7 Support</li>
-      </ul>
-      <a href="#" class="btn">Choose Plan</a>
+    <div class="feature">
+      <h3>✅ Make Informed Decisions</h3>
+      <p>Choose the course that fits your learning goals and budget</p>
     </div>
-
   </div>
+
+  <h2>What Our Users Say</h2>
+  <div class="testimonials">
+    <div class="testimonial">
+      <img src="https://i.pravatar.cc/50?img=1" alt="John D.">
+      <p><strong>John D.</strong><br>I found the perfect course for my career, thanks to this comparison tool!</p>
+    </div>
+    <div class="testimonial">
+      <img src="https://i.pravatar.cc/50?img=5" alt="Sarah W.">
+      <p><strong>Sarah W.</strong><br>The side-by-side comparison made it so easy to choose the right course. Highly recommend it.</p>
+    </div>
+  </div>
+
+  <button class="cta-button" onclick="scrollToTop()">Find Your Ideal Course Now</button>
+
+  <footer>
+    <a href="#">About Us</a> |
+    <a href="#">Contact</a> |
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms</a>
+  </footer>
 
   <script>
-    let yearly = false;
-
-    function togglePricing() {
-      const prices = document.querySelectorAll('.price');
-      yearly = !yearly;
-
-      prices.forEach(price => {
-        price.textContent = yearly 
-          ? price.getAttribute('data-yearly') + '/year' 
-          : price.getAttribute('data-monthly') + '/month';
-      });
-
-      document.querySelector('.toggle-btn button').textContent =
-        yearly ? 'Switch to Monthly Pricing' : 'Switch to Yearly Pricing';
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 
