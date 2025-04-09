@@ -1,11 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Landing Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Pricing Table</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f7fa;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .toggle-btn {
+      margin-bottom: 30px;
+    }
+
+    .toggle-btn button {
+      padding: 10px 20px;
+      border: none;
+      background: #007BFF;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    .price {
+      font-size: 28px;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #007BFF;
+    }
+
+    .features {
+      list-style: none;
+      margin: 20px 0;
+      padding: 0;
+    }
+
+    .features li {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to my landing page!</h1>
-  <p>This is hosted on GitHub Pages 🚀</p>
+
+  <h2>Choose Your Plan</h2>
+
+  <div class="toggle-btn">
+    <button onclick="togglePricing()">Switch to Yearly Pricing</button>
+  </div>
+
+  <div class="pricing-container" id="pricing">
+
+    <div class="card">
+      <h3>Basic</h3>
+      <div class="price" data-monthly="$9" data-yearly="$90">$9/month</div>
+      <ul class="features">
+        <li>1 Website</li>
+        <li>10 GB Storage</li>
+        <li>Email Support</li>
+      </ul>
+      <a href="#" class="btn">Choose Plan</a>
+    </div>
+
+    <div class="card">
+      <h3>Pro</h3>
+      <div class="price" data-monthly="$19" data-yearly="$190">$19/month</div>
+      <ul class="features">
+        <li>5 Websites</li>
+        <li>50 GB Storage</li>
+        <li>Priority Support</li>
+      </ul>
+      <a href="#" class="btn">Choose Plan</a>
+    </div>
+
+    <div class="card">
+      <h3>Enterprise</h3>
+      <div class="price" data-monthly="$49" data-yearly="$490">$49/month</div>
+      <ul class="features">
+        <li>Unlimited Websites</li>
+        <li>200 GB Storage</li>
+        <li>24/7 Support</li>
+      </ul>
+      <a href="#" class="btn">Choose Plan</a>
+    </div>
+
+  </div>
+
+  <script>
+    let yearly = false;
+
+    function togglePricing() {
+      const prices = document.querySelectorAll('.price');
+      yearly = !yearly;
+
+      prices.forEach(price => {
+        price.textContent = yearly 
+          ? price.getAttribute('data-yearly') + '/year' 
+          : price.getAttribute('data-monthly') + '/month';
+      });
+
+      document.querySelector('.toggle-btn button').textContent =
+        yearly ? 'Switch to Monthly Pricing' : 'Switch to Yearly Pricing';
+    }
+  </script>
+
 </body>
 </html>
